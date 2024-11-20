@@ -37,12 +37,11 @@ main {
       width: fit-content;
       font-weight: 600;
       line-height: 28px;
-      margin-bottom: 6.25rem;
     }
 
     .forms__content {
       max-width: 483px;
-      margin: 0 auto;
+      margin: auto;
     }
 
     .main-logo {
@@ -111,7 +110,6 @@ main {
       font-size: 0.875rem;
       line-height: 125%;
       color: #6a6a6a;
-      margin-top: auto;
       margin-bottom: 28px;
     }
   }
