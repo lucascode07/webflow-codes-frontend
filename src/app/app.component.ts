@@ -12,6 +12,7 @@ export class AppComponent {
   private readonly _fb = inject(FormBuilder);
 
   public showLoader = signal<boolean>(false);
+  public codeHasError = signal<boolean>(false);
 
   public codeForm = this._fb.group({
     code: [
