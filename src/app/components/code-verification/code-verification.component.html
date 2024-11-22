@@ -1,0 +1,39 @@
+<img
+  class="main-logo"
+  src="/assets/images/logo-design-space.png"
+  width="184"
+  height="32.38"
+  alt="logo de designspace"
+/>
+
+<h1 class="forms__title">Confirma tu asistencia</h1>
+
+<p class="forms__text">
+  Fuiste seleccionado para vivir la experiencia y aprender una de las
+  herramientas más potentes <strong>NOCODE</strong> para crear webs
+  personalizadas
+</p>
+
+<form
+  [formGroup]="codeForm"
+  (ngSubmit)="onSubmit()"
+  [class.error]="codeHasError()"
+>
+  <input
+    type="text"
+    placeholder="Código de registro"
+    formControlName="code"
+    maxlength="6"
+  />
+  <small class="text-error">Este código es invalido o ya expiro</small>
+
+  <button [disabled]="codeForm.invalid">
+    Validar código
+    @if (showLoader()) {
+      <div class="loader"></div>
+    }
+    @if (codeHasError()) {
+      <img src="/assets/icons/close-times.svg" alt="" aria-hidden="true" />
+    }
+  </button>
+</form>
