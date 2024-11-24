@@ -21,12 +21,12 @@ export class RegisterFormComponent {
   public showLoader = signal<boolean>(false);
 
   public registerForm = this._fb.group({
-    fullName: ['Lucas Barrenechea', [Validators.required]],
+    fullName: ['', [Validators.required]],
     phone: [
-      '955835813',
+      '',
       [Validators.required, Validators.pattern(ONLY_NUMBERS_PATTERN)],
     ],
-    email: ['lucas@correo.com', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
+    email: ['', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
   });
 
   public sendRegisterForm(): void {
