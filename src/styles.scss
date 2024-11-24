@@ -159,31 +159,6 @@ form {
     margin-left: 1rem;
     line-height: 125%;
   }
-  button {
-    font-size: 1rem;
-    border-radius: 100px;
-    border: none;
-    height: 48px;
-    padding: 0 41px;
-    background-color: #1e1e1e;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 10px;
-    margin: 24px auto 0;
-    transition:
-      background-color 0.3s ease-in-out,
-      color 0.3s ease-in-out;
-
-    &:disabled {
-      background-color: #f0f0f0;
-      color: #1e1e1e;
-      cursor: default;
-    }
-  }
-
   &.error {
     input {
       border-color: #ff4145;
@@ -199,6 +174,32 @@ form {
     button {
       background-color: #ff4145;
       color: #fff;
+      pointer-events: none;
     }
+  }
+}
+
+.primary-button {
+  font-size: 1rem;
+  border-radius: 100px;
+  border: none;
+  height: 48px;
+  padding: 0 41px;
+  background-color: #1e1e1e;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  margin: 0 auto;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+
+  &:disabled {
+    background-color: #f0f0f0;
+    color: #1e1e1e;
+    cursor: default;
   }
 }

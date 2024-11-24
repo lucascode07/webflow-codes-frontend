@@ -57,9 +57,11 @@
       }
     }
 
-    <small class="expiration-date">
-      *El código brindado es valido hasta el Lunes 16 de Diciembre
-    </small>
+    @if (currentStep() !== stepValue.CONFIRM_MESSAGE) {
+      <small class="expiration-date">
+        *El código brindado es valido hasta el Lunes 16 de Diciembre
+      </small>
+    }
 
     <img
       class="forms__lines--green"

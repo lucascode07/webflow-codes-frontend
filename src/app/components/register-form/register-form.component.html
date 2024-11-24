@@ -5,10 +5,29 @@
   tu asistencia
 </p>
 
-<form>
-  <input type="text" placeholder="Nombre y Apellidos" />
-  <input type="text" placeholder="Número de teléfono" />
-  <input type="text" placeholder="Correo electrónico" />
+<form [formGroup]="registerForm" (ngSubmit)="sendRegisterForm()">
+  <input
+    type="text"
+    placeholder="Nombre y Apellidos"
+    formControlName="fullName"
+  />
+  <input
+    type="tel"
+    maxlength="9"
+    minlength="9"
+    placeholder="Número de teléfono"
+    formControlName="phone"
+  />
+  <input
+    type="email"
+    placeholder="Correo electrónico"
+    formControlName="email"
+  />
 
-  <button [disabled]="true">Confirmar asistencia</button>
+  <button class="primary-button" [disabled]="registerForm.invalid">
+    Confirmar asistencia
+    @if (showLoader()) {
+      <div class="loader"></div>
+    }
+  </button>
 </form>

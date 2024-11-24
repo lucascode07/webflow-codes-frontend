@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Code, CodeResponse } from '../models/code.model';
+import { Code, CodeResponse, CodeStatus } from '../models/code.model';
 import { environment } from '../../environments/environment';
-import { delay, map, tap } from 'rxjs';
+import { delay, map, Observable, tap } from 'rxjs';
 import { codeMapper } from '../utils/mappers/code.mapper';
 
 @Injectable({
@@ -17,13 +17,13 @@ export class CodeService {
     return this.code;
   }
 
-  public verifyCode(code: string) {
+  public verifyCode(code: string): Observable<CodeStatus> {
     return this._http
       .get<CodeResponse>(`${environment.baseURL}/attendances/${code}`)
       .pipe(
-        delay(2000),
+        delay(1000),
         tap((codeData) => (this.code = codeMapper(codeData))),
-        map((codeData) => codeMapper(codeData)),
+        map((codeData) => codeData.codeStatus),
       );
   }
 }

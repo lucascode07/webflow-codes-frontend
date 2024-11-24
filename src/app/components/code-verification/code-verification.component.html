@@ -25,10 +25,10 @@
     formControlName="code"
     maxlength="6"
   />
-  <small class="text-error">Este código es invalido o ya expiro</small>
+  <small class="text-error">{{ errorMessage() }}</small>
 
-  <button [disabled]="codeForm.invalid">
-    Validar código
+  <button class="primary-button" [disabled]="codeForm.invalid">
+    {{ buttonText() }}
     @if (showLoader()) {
       <div class="loader"></div>
     }
