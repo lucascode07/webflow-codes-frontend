@@ -1,3 +1,3 @@
 export const environment = {
-  baseURL: 'https://webflow-codes-backend.onrender.com/api',
+  baseURL: 'http://localhost:1338/api',
 };

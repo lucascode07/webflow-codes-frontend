@@ -1,10 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { CodeService } from '../../services/code.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   EMAIL_PATTERN,
   ONLY_NUMBERS_PATTERN,
 } from '../../utils/constants/patterns.constants';
+import { AttendeeRequest } from '../../models/attende.model';
+import { CodeStatus } from '../../models/code.model';
+import { Step } from '../../utils/enum/step.interface';
 
 @Component({
   selector: 'register-form',
@@ -17,6 +20,8 @@ import {
 export class RegisterFormComponent {
   private readonly _codeService = inject(CodeService);
   private readonly _fb = inject(FormBuilder);
+
+  public successRegister = output<Step>();
 
   public showLoader = signal<boolean>(false);
 
@@ -34,9 +39,20 @@ export class RegisterFormComponent {
 
     if (this.registerForm.invalid) return;
 
-    console.log({
-      ...this.registerForm.value,
-      code: this._codeService.codeValue?.code,
+    const body: AttendeeRequest = {
+      data: {
+        fullName: this.registerForm.value.fullName!,
+        phone: this.registerForm.value.phone!,
+        email: this.registerForm.value.email!,
+        codeStatus: CodeStatus.CONFIRMED,
+      },
+    };
+
+    this._codeService.registerAttendee(body).subscribe({
+      next: () => {
+        this.showLoader.set(false);
+        this.successRegister.emit(Step.CONFIRM_MESSAGE);
+      },
     });
   }
 }

@@ -50,7 +50,7 @@
         <code-verification (successVerification)="nextStep($event)" />
       }
       @case (stepValue.REGISTER_FORM) {
-        <register-form />
+        <register-form (successRegister)="nextStep($event)" />
       }
       @case (stepValue.CONFIRM_MESSAGE) {
         <confirm-message />

@@ -4,6 +4,7 @@ import { Code, CodeResponse, CodeStatus } from '../models/code.model';
 import { environment } from '../../environments/environment';
 import { delay, map, Observable, tap } from 'rxjs';
 import { codeMapper } from '../utils/mappers/code.mapper';
+import { AttendeeRequest } from '../models/attende.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +26,12 @@ export class CodeService {
         tap((codeData) => (this.code = codeMapper(codeData))),
         map((codeData) => codeData.codeStatus),
       );
+  }
+
+  public registerAttendee(body: AttendeeRequest) {
+    return this._http.put<unknown>(
+      `${environment.baseURL}/attendances/${this.code?.documentId}`,
+      body,
+    );
   }
 }
