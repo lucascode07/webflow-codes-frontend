@@ -13,9 +13,14 @@ export class CodeService {
   private readonly _http = inject(HttpClient);
 
   private code?: Code;
+  private fullName?: string;
 
   public get codeValue() {
     return this.code;
+  }
+
+  public get fullNameValue() {
+    return this.fullName;
   }
 
   public verifyCode(code: string): Observable<CodeStatus> {
@@ -29,9 +34,11 @@ export class CodeService {
   }
 
   public registerAttendee(body: AttendeeRequest) {
-    return this._http.put<unknown>(
-      `${environment.baseURL}/attendances/${this.code?.documentId}`,
-      body,
-    );
+    return this._http
+      .put<any>(
+        `${environment.baseURL}/attendances/${this.code?.documentId}`,
+        body,
+      )
+      .pipe(tap((res) => (this.fullName = res['data'].fullName)));
   }
 }

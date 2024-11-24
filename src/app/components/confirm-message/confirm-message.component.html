@@ -1,17 +1,13 @@
 <confirm-status [imageSource]="imageSource()">
   <h1 class="confirm-title">
-    <span>Rubén</span>, tu asistencia fue confirmada
+    <span>{{ firstName() }}</span
+    >, tu asistencia fue confirmada
   </h1>
 
   <p class="forms__text confirm-description">
     *Recuerda que el 19 de Diciembre tienes que volver a
     <strong>RECONFIRMAR</strong> tu asistencia para asegurar tu sitio al 100%
   </p>
-
-  <!-- <p class="forms__text confirm-description">
-    Estamos listos para recibirte este 21 de Diciembre, prepárate para el gran
-    día.
-  </p> -->
 </confirm-status>
 
 <a href="https://designspace.club" class="primary-button">Seguir navegando</a>
