@@ -44,7 +44,7 @@ export class RegisterFormComponent {
         fullName: this.registerForm.value.fullName!,
         phone: this.registerForm.value.phone!,
         email: this.registerForm.value.email!,
-        codeStatus: CodeStatus.CONFIRMED,
+        codeStatus: CodeStatus.RECONFIRMED,
       },
     };
 
