@@ -9,6 +9,7 @@ import {
   DEFAULT_ERROR_MESSAGE,
   ERROR_MESSAGE_CONFIRMED,
 } from '../../utils/constants/text-messages.constants';
+import { AttendeeRequest } from '../../models/attende.model';
 
 @Component({
   selector: 'code-verification',
@@ -59,6 +60,8 @@ export class CodeVerificationComponent {
           this.codeHasError.set(true);
           this.buttonText.set(BUTTON_TEXT_ERROR);
         } else if (status === CodeStatus.CONFIRMED) {
+          this.updateConfirmedCode();
+        } else if (status === CodeStatus.RECONFIRMED) {
           this.codeHasError.set(true);
           this.errorMessage.set(ERROR_MESSAGE_CONFIRMED);
           this.buttonText.set(BUTTON_TEXT_ERROR);
@@ -68,6 +71,23 @@ export class CodeVerificationComponent {
         this.showLoader.set(false);
         this.codeHasError.set(true);
         this.buttonText.set(BUTTON_TEXT_ERROR);
+      },
+    });
+  }
+
+  private updateConfirmedCode(): void {
+    this.showLoader.set(true);
+
+    const bodyRq = {
+      data: {
+        codeStatus: CodeStatus.RECONFIRMED,
+      },
+    };
+
+    this._codeService.registerAttendee(bodyRq as AttendeeRequest).subscribe({
+      next: () => {
+        this.showLoader.set(false);
+        this.successVerification.emit(Step.CONFIRM_MESSAGE);
       },
     });
   }

@@ -17,10 +17,7 @@ import { ConfirmMessageComponent } from './components/confirm-message/confirm-me
 })
 export class AppComponent {
   public currentStep = signal<Step>(Step.CODE_VERIFICATION);
-
-  public get stepValue(): typeof Step {
-    return Step;
-  }
+  public stepValue: typeof Step = Step;
 
   public nextStep(step: Step): void {
     this.currentStep.set(step);
